@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "Window.h"
+#include <stdlib.h>
 
 namespace {
     GLFWwindow* window = nullptr;

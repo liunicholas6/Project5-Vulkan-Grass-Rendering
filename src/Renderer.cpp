@@ -363,8 +363,8 @@ void Renderer::CreateComputeDescriptorSets() {
 }
 
 void Renderer::CreateGraphicsPipeline() {
-    VkShaderModule vertShaderModule = ShaderModule::Create("shaders/graphics.vert.spv", logicalDevice);
-    VkShaderModule fragShaderModule = ShaderModule::Create("shaders/graphics.frag.spv", logicalDevice);
+    VkShaderModule vertShaderModule = ShaderModule::Create("src/shaders/graphics.vert.spv", logicalDevice);
+    VkShaderModule fragShaderModule = ShaderModule::Create("src/shaders/graphics.frag.spv", logicalDevice);
 
     // Assign each shader module to the appropriate stage in the pipeline
     VkPipelineShaderStageCreateInfo vertShaderStageInfo = {};
@@ -523,10 +523,10 @@ void Renderer::CreateGraphicsPipeline() {
 
 void Renderer::CreateGrassPipeline() {
     // --- Set up programmable shaders ---
-    VkShaderModule vertShaderModule = ShaderModule::Create("shaders/grass.vert.spv", logicalDevice);
-    VkShaderModule tescShaderModule = ShaderModule::Create("shaders/grass.tesc.spv", logicalDevice);
-    VkShaderModule teseShaderModule = ShaderModule::Create("shaders/grass.tese.spv", logicalDevice);
-    VkShaderModule fragShaderModule = ShaderModule::Create("shaders/grass.frag.spv", logicalDevice);
+    VkShaderModule vertShaderModule = ShaderModule::Create("src/shaders/grass.vert.spv", logicalDevice);
+    VkShaderModule tescShaderModule = ShaderModule::Create("src/shaders/grass.tesc.spv", logicalDevice);
+    VkShaderModule teseShaderModule = ShaderModule::Create("src/shaders/grass.tese.spv", logicalDevice);
+    VkShaderModule fragShaderModule = ShaderModule::Create("src/shaders/grass.frag.spv", logicalDevice);
 
     // Assign each shader module to the appropriate stage in the pipeline
     VkPipelineShaderStageCreateInfo vertShaderStageInfo = {};
@@ -708,7 +708,7 @@ void Renderer::CreateGrassPipeline() {
 
 void Renderer::CreateComputePipeline() {
     // Set up programmable shaders
-    VkShaderModule computeShaderModule = ShaderModule::Create("shaders/compute.comp.spv", logicalDevice);
+    VkShaderModule computeShaderModule = ShaderModule::Create("src/shaders/compute.comp.spv", logicalDevice);
 
     VkPipelineShaderStageCreateInfo computeShaderStageInfo = {};
     computeShaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;

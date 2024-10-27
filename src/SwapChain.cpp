@@ -3,6 +3,7 @@
 #include "Instance.h"
 #include "Device.h"
 #include "Window.h"
+#include <limits>
 
 namespace {
   // Specify the color channel format and color space type

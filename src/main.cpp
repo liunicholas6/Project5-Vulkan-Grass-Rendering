@@ -66,7 +66,7 @@ namespace {
 }
 
 int main() {
-    static constexpr char* applicationName = "Vulkan Grass Rendering";
+    static constexpr char applicationName[] = "Vulkan Grass Rendering";
     InitializeWindow(640, 480, applicationName);
 
     unsigned int glfwExtensionCount = 0;
@@ -106,7 +106,7 @@ int main() {
     VkDeviceMemory grassImageMemory;
     Image::FromFile(device,
         transferCommandPool,
-        "images/grass.jpg",
+        "src/images/grass.jpg",
         VK_FORMAT_R8G8B8A8_UNORM,
         VK_IMAGE_TILING_OPTIMAL,
         VK_IMAGE_USAGE_SAMPLED_BIT,
