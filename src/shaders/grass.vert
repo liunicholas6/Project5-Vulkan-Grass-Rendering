@@ -17,9 +17,9 @@ layout(location = 1) out vec4 tesc_v1;
 layout(location = 2) out vec4 tesc_v2;
 layout(location = 3) out vec4 tesc_up;
 
-out gl_PerVertex {
-    vec4 gl_Position;
-};
+// out gl_PerVertex {
+//     vec4 gl_Position;
+// };
 
 vec4 apply_model(vec4 v) {
     vec4 res = model * vec4(v.xyz, 1);
