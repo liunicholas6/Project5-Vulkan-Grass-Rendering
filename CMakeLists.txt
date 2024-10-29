@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.5)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
 
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
+
 project(cis565_project5_vulkan_grass_rendering)
 
 OPTION(USE_D2D_WSI "Build the project using Direct to Display swapchain" OFF)
