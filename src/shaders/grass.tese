@@ -14,6 +14,8 @@ layout(location = 1) in vec4 tese_v1[];
 layout(location = 2) in vec4 tese_v2[];
 layout(location = 3) in vec4 tese_up[];
 
+layout(location = 0) out vec3 frag_normal;
+
 void main() {
     // TODO: Use u and v to parameterize along the grass blade and output positions for each vertex of the grass blade
     float u = gl_TessCoord.x;
@@ -33,11 +35,16 @@ void main() {
     // De Casteljeau's bezier
     vec3 a = mix(v0, v1, v);
     vec3 b = mix(v1, v2, v);
+    vec3 t0 = b - a;
+
+    frag_normal = normalize(cross(t0, t1));
+
     vec3 c = mix(a, b, v);
 
     vec3 c0 = c - w * t1;
     vec3 c1 = c + w * t1;
-    vec3 pos = mix(c0, c1, (u - 0.5) * (1 - v) + 0.5);
+
+    vec3 pos = mix(c0, c1, u - u * v * v);
 
     gl_Position = camera.proj * camera.view * vec4(pos, 1);
 }
