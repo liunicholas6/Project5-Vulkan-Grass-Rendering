@@ -7,6 +7,10 @@ Vulkan Grass Rendering
   * [Linkedin](https://www.linkedin.com/in/liunicholas6/)
 * Tested on: Linux Mint 22 Wilma, AMD Ryzen 7 5800X @ 2.512GHz, 32GB RAM, GeForce GTX 1660 Ti
 
+| <img src="img/normals.gif"> |
+|:--:|
+| *I output the normals as colors for debug and it looked kinda good* |
+
 ## Project Overview
 
 This Vulkan project implements grass rendering techniques outlined in the paper [Responsive Real-Time Grass Rendering for General 3D Scenes](https://www.cg.tuwien.ac.at/research/publications/2017/JAHRMANN-2017-RRTG/JAHRMANN-2017-RRTG-draft.pdf)
