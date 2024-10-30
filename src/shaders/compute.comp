@@ -22,8 +22,8 @@ struct Blade {
 };
 
 #define ORIENTATION_CULL
-#define FRUSTUM_CULL
-#define DISTANCE_CULL
+// #define FRUSTUM_CULL
+// #define DISTANCE_CULL
 
 #ifdef DISTANCE_CULL
 #define MAX_DIST 50
@@ -149,7 +149,7 @@ void main() {
     #ifdef DISTANCE_CULL
     float distance = -(camera.view * vec4(v0, 1)).z;
     float dist_ratio = distance / MAX_DIST;
-    float cullProb = sqrt(dist_ratio);
+    float cullProb = dist_ratio * dist_ratio;
     if (rand(v0) < cullProb) {
         return;
     }

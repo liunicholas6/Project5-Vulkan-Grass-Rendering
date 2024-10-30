@@ -29,3 +29,25 @@ For maximum performance, several different criteria for culling blades were impl
 | <img src="img/orientationcull.gif" width=350> | <img src="img/frustumcull.gif" width=350> | <img src="img/distancecull.gif" width=350> |
 |:--:|:--:|:--:|
 | *Orientation Culling* | *View Frustum Culling* | *Distance Culling* |
+
+## Performance
+
+I tested performance in 3 different camera positions: the default (looking at all the grass, at ground level), a far away scene, and a close up in the middle of the scene. For each of these I let the program run for 2^16 frames and timed how long it took to render them.
+
+| <img src="img/defaultcam.png" width=350> | <img src="img/closecam.png" width=350> | <img src="img/farcam.png" width=350> |
+|:--:|:--:|:--:|
+| *Default* | *Close* | *Far* |
+
+In general, turning on all method of culling performed best, as expected. Distance culling made the greatest impact when the camera was far, and orientation culling had a significant impact where the camera was more or less parallel to the ground plane (as said scenarios are where the most blades of grass get culled, respectively).
+
+Somewhat surprisingly, however, frustum culling seemed to have very little impact on performance generally -- its effect is explainable within the bounds of random variance; in fact the frustum-culling only run performed worse than no optimizations in the far camera setup. This is surprising, as I would expect frustum culling to have a very significant impact in the close up scene, where it should cull about 3/4 of the geometry. I hypothesize that the lack of performance benefit comes from the fact that the driver already performs frustum culling at the vertex stage with a computation that is about as cheap as what I perform manually in the compute stage.
+
+| Optimizations     | Default Scene | Close Scene | Far Scene |
+|-------------------|---------------|-------------|-----------|
+| No Optimizations  |       118.695 |     118.259 |   92.6448 |
+| Orientation Cull  |       92.0582 |     91.6129 |   92.7531 |
+| Frustum Cull      |       114.687 |     115.402 |   93.2135 |
+| Distance Cull     |       115.637 |      114.76 |   35.1957 |
+| All Optimizations |        87.186 |     88.1485 |   35.5031 |
+<img src="img/chart.png">
+

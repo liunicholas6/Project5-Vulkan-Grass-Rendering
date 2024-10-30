@@ -23,7 +23,7 @@ private:
     float r, theta, phi;
 
 public:
-    Camera(Device* device, float aspectRatio);
+    Camera(Device* device, float aspectRatio, float r = 10, float theta = 0, float phi = 0);
     ~Camera();
 
     VkBuffer GetBuffer() const;

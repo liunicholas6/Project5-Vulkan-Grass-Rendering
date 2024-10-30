@@ -5,6 +5,9 @@
 #include "Camera.h"
 #include "Scene.h"
 #include "Image.h"
+#include <iostream>
+
+#define BENCH_FRAMES 1 << 16
 
 Device* device;
 SwapChain* swapChain;
@@ -90,7 +93,14 @@ int main() {
 
     swapChain = device->CreateSwapChain(surface, 5);
 
+    // Default Camera
     camera = new Camera(device, 640.f / 480.f);
+
+    // Close Camera
+    // camera = new Camera(device, 640.f / 480.f, 0, 0, 0);
+
+    // Far Camera
+    // camera = new Camera(device, 640.f / 480.f, 50, 45, 60);
 
     VkCommandPoolCreateInfo transferPoolInfo = {};
     transferPoolInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
@@ -143,11 +153,25 @@ int main() {
     glfwSetMouseButtonCallback(GetGLFWWindow(), mouseDownCallback);
     glfwSetCursorPosCallback(GetGLFWWindow(), mouseMoveCallback);
 
+    #ifdef BENCH_FRAMES
+    double start = glfwGetTime();
+    for (size_t i = 0; i < BENCH_FRAMES; i++) {
+        if (ShouldQuit()) {
+            exit(1);
+        }
+        glfwPollEvents();
+        scene->UpdateTime();
+        renderer->Frame();
+    }
+    double end = glfwGetTime();
+    std::cout << end - start << std::endl;
+    #else
     while (!ShouldQuit()) {
         glfwPollEvents();
         scene->UpdateTime();
         renderer->Frame();
     }
+    #endif
 
     vkDeviceWaitIdle(device->GetVkDevice());
 
